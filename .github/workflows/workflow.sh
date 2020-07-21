@@ -26,7 +26,7 @@ cp ${WORKDIR}/${SOURCE}/arch/${ARCH}/boot/dts/overlays/*.dtb* ${WORKDIR}/${OUTPU
 # Finish
 cd ${WORKDIR}
 # size
-touch $(du -d 0 ${OUTPUT}-* | awk '{print $1}').txt
+touch $(du -d 0 ${OUTPUT} | awk '{print $1}').txt
 # target_defconfig
 cp ${WORKDIR}/${SOURCE}/arch/${ARCH}/configs/${TARGET} ${WORKDIR}/
 # kernel
