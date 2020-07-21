@@ -37,5 +37,5 @@ jobs:
           name: openeuler
           path: /home/runner/work/raspberrypi-kernel/openeuler.tar
 
-      - name: Cat size
-        run: cat /home/runner/work/raspberrypi-kernel/*.txt
+      - name: ls size
+        run: ls /home/runner/work/raspberrypi-kernel/*.txt
