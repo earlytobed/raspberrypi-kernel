@@ -1,0 +1,41 @@
+name: openEuler-raspi
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: kernel build
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Prepare
+        run: sudo apt-get install gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu bc -y
+
+      - name: AIO
+        run: bash .github/workflows/workflow.sh
+
+      - name: Archive size
+        uses: actions/upload-artifact@v2
+        with:
+          name: size
+          path: /home/runner/work/raspberrypi-kernel/*.txt
+
+      - name: Archive shrink_defconfig
+        uses: actions/upload-artifact@v2
+        with:
+          name: shrink_defconfig
+          path: /home/runner/work/raspberrypi-kernel/shrink_defconfig
+
+      - name: Archive kernel
+        uses: actions/upload-artifact@v2
+        with:
+          name: openeuler
+          path: /home/runner/work/raspberrypi-kernel/openeuler.tar
+
+      - name: Cat size
+        run: cat /home/runner/work/raspberrypi-kernel/*.txt
